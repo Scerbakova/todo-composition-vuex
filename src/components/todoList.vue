@@ -1,14 +1,14 @@
 <template>
-  <TodoEntry v-for="item in items" :key="item.id" v-bind="item" />
-  <TodoFilters />
+  <TodoEntry v-for="item in filteredTodos" :key="item.id" v-bind="item" />
+  <div v-for="filter in filters" :key="filter">
+    <button @click="setFilter(filter)">{{ filter }}</button>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useStore } from "@/store";
 import TodoEntry from "./todoEntry.vue";
-import TodoFilters from "./todoFilters.vue";
+import { useTodoList } from "@/composables/useTodoList";
+const { setFilter, filteredTodos } = useTodoList();
 
-const store = useStore();
-const items = computed(() => store.state.items);
+const filters = ["All", "In Progress", "Completed"];
 </script>

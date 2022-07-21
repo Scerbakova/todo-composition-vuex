@@ -35,9 +35,9 @@ export const mutations: MutationTree<State> & Mutations = {
     localStorage.todos = JSON.stringify(state.items);
   },
   [MutationType.CompleteItem](state, newItem) {
-    const item = state.items.findIndex((state) => state.id === newItem.id);
-    if (item === -1) return;
-    state.items[item] = { ...state.items[item], ...newItem };
+    state.items.map((item) => {
+      item.id === newItem.id ? (item.completed = !item.completed) : item.text;
+    });
   },
   [MutationType.DeleteItem](state, newItem) {
     state.items = state.items.filter((state) => state.id !== newItem.id);
