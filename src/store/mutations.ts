@@ -37,6 +37,7 @@ export const mutations: MutationTree<State> & Mutations = {
   [MutationType.CompleteItem](state, newItem) {
     state.items.map((item) => {
       item.id === newItem.id ? (item.completed = !item.completed) : item.text;
+      localStorage.todos = JSON.stringify(state.items);
     });
   },
   [MutationType.DeleteItem](state, newItem) {

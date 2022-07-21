@@ -1,22 +1,37 @@
 <template>
-  <div>
-    <div>
-      <input type="checkbox" :checked="completed" @change="toggleCompletion" />
+  <div class="entry__container">
+    <input
+      class="entry__checkbox"
+      type="checkbox"
+      :checked="completed"
+      @change="toggleCompletion"
+    />
+    <p
+      v-if="!editing"
+      @dblclick="editTodo"
+      class="todo-item-label"
+      :class="completed ? 'entry entry--completed' : 'entry'"
+    >
+      {{ updatedTodo }}
+    </p>
+    <div class="button__container">
+      <button class="edit__button" @click="editTodo" v-if="!editing">
+        <img class="image" src="../assets/images/edit.png" alt="edit" />
+      </button>
+      <button class="delete__button" @click="deleteTodo" v-if="!editing">
+        <img class="image" src="../assets/images/trash.png" alt="edit" />
+      </button>
     </div>
-    <div>
-      <h4>{{ updatedTodo }}</h4>
-    </div>
-    <button @click="editTodo">Edit</button>
-    <button @click="deleteTodo">Delete</button>
   </div>
+  <hr style="width: 100%" />
   <div v-if="editing">
     <input
+      class="edit__input"
       v-model.trim="todoText"
       placeholder="edit"
       type="text"
       @blur="doneEdit"
       @keyup.enter="doneEdit"
-      ref="editInput"
     />
   </div>
 </template>
@@ -76,3 +91,7 @@ const doneEdit = () => {
   });
 };
 </script>
+
+<style lang="scss">
+@import "@/styles/App.scss";
+</style>

@@ -8,9 +8,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
-    <h1>Planner</h1>
-    <div>
+  <div class="app__wrapper">
+    <h1 class="app__title">Planner</h1>
+    <div class="todo__wrapper">
       <NewItem />
       <TodoList />
     </div>
@@ -19,4 +19,5 @@ export default defineComponent({
 
 <style lang="scss">
 @import "@/assets/reset.scss";
+@import "@/styles/App.scss";
 </style>
