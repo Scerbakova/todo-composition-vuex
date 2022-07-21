@@ -1,19 +1,20 @@
 <template>
   <div class="entry__container">
-    <input
-      class="entry__checkbox"
-      type="checkbox"
-      :checked="completed"
-      @change="toggleCompletion"
-    />
-    <p
-      v-if="!editing"
-      @dblclick="editTodo"
-      class="todo-item-label"
-      :class="completed ? 'entry entry--completed' : 'entry'"
-    >
-      {{ updatedTodo }}
-    </p>
+    <div class="container__left-side">
+      <input
+        class="entry__checkbox"
+        type="checkbox"
+        :checked="completed"
+        @change="toggleCompletion"
+      />
+      <p
+        v-if="!editing"
+        @dblclick="editTodo"
+        :class="completed ? 'entry entry--completed' : 'entry'"
+      >
+        {{ updatedTodo }}
+      </p>
+    </div>
     <div class="button__container">
       <button class="edit__button" @click="editTodo" v-if="!editing">
         <img class="image" src="../assets/images/edit.png" alt="edit" />

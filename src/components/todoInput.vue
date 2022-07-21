@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="createTask">
-    <div>
+    <div class="form__group">
       <input
         class="form__input"
         v-model="text"
@@ -8,6 +8,7 @@
         placeholder="Write a new task here"
         ref="formInput"
       />
+      <button class="button">Add</button>
     </div>
   </form>
 </template>
