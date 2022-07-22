@@ -10,7 +10,5 @@ export type State = {
 };
 
 export const state: State = {
-  items: localStorage.getItem("todos")
-    ? JSON.parse(localStorage.getItem("todos") || "[]")
-    : ([] as object[]),
+  items: JSON.parse(localStorage.getItem("todos") || "[]"),
 };

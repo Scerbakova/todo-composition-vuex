@@ -25,7 +25,7 @@ export type Mutations = {
   ): void;
   [MutationType.EditCompleted](
     state: State,
-    item: Partial<TodoEntry> & { text: string }
+    item: Partial<TodoEntry> & { text: string; id: number }
   ): void;
 };
 
@@ -34,32 +34,38 @@ export const mutations: MutationTree<State> & Mutations = {
     state.items.unshift(item);
     localStorage.todos = JSON.stringify(state.items);
   },
-  [MutationType.CompleteItem](state, newItem) {
-    state.items.map((item) => {
-      item.id === newItem.id ? (item.completed = !item.completed) : item.text;
+  [MutationType.CompleteItem](state, { id }) {
+    state.items = state.items.map((item) => {
+      if (item.id === id) {
+        item.completed = !item.completed;
+      }
       localStorage.todos = JSON.stringify(state.items);
+
+      return item;
     });
   },
-  [MutationType.DeleteItem](state, newItem) {
-    state.items = state.items.filter((state) => state.id !== newItem.id);
+  [MutationType.DeleteItem](state, { id }) {
+    state.items = state.items.filter((entry) => entry.id !== id);
     localStorage.todos = JSON.stringify(state.items);
   },
-  [MutationType.EditItem](state, newItem) {
-    state.items.map((item) => {
-      if (item.id === newItem.id) {
+  [MutationType.EditItem](state, { id }) {
+    state.items = state.items.map((item) => {
+      if (item.id === id) {
         item.editing = true;
-      } else {
-        item.text;
       }
+
+      return item;
     });
   },
-  [MutationType.EditCompleted](state, newItem) {
-    state.items.map((item) => {
-      if (item.id === newItem.id) {
-        item.text = newItem.text;
+  [MutationType.EditCompleted](state, { id, text }) {
+    state.items = state.items.map((item) => {
+      if (item.id === id) {
+        item.text = text;
       }
       item.editing = false;
       localStorage.todos = JSON.stringify(state.items);
+
+      return item;
     });
   },
 };

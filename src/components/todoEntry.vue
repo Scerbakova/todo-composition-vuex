@@ -7,11 +7,7 @@
         :checked="completed"
         @change="toggleCompletion"
       />
-      <p
-        v-if="!editing"
-        @dblclick="editTodo"
-        :class="completed ? 'entry entry--completed' : 'entry'"
-      >
+      <p v-if="!editing" :class="`entry ${completed && 'entry--completed'}`">
         {{ updatedTodo }}
       </p>
     </div>

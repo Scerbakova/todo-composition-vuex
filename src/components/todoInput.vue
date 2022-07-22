@@ -30,13 +30,15 @@ onMounted(() => {
 });
 
 const createTask = () => {
-  if (text.value === "") return;
+  if (!text.value) return;
+
   const item: TodoEntry = {
     id: Date.now(),
     text: text.value,
     completed: false,
     editing: false,
   };
+
   store.commit(MutationType.CreateItem, item);
   text.value = "";
 };
