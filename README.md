@@ -1,3 +1,7 @@
- https://master--creative-croquembouche-f47bcf.netlify.app/
+Here is a simple todo list, where there is a possibility to add tasks, remove, edit, mark as completed and hide or show tasks according to the filters: "All", "In Progress", "Completed"
 
-![planner](https://user-images.githubusercontent.com/97510856/180307621-cd05de82-d4c8-4d0e-b01c-c19adea4f8a9.png)
+The project was created with Vue 3 framework - composition api "script setup" and vuex.
+
+The language is typescript
+
+Here is a link where you can see it in action
